@@ -374,6 +374,12 @@ func (c *Container) ShortID() string {
 
 // Name returns the container name.
 func (c *Container) Name() string {
+	//flowqio hack
+	if c.container == nil {
+		fmt.Println("HACK libcompose/docker/container/container.go Name")
+		return ""
+	}
+
 	return c.container.Name
 }
 
@@ -386,6 +392,16 @@ func (c *Container) Image() string {
 // ImageConfig returns the container image stored in the config. It's the
 // human-readable name of the image.
 func (c *Container) ImageConfig() string {
+	//flowqio hack
+	if c.container == nil {
+		fmt.Println("HACK libcompose/docker/container/container.go ImageConfig")
+		return ""
+	}
+
+	if c.container.Config == nil {
+		fmt.Println("HACK libcompose/docker/container/container.go ImageConfig")
+		return ""
+	}
 	return c.container.Config.Image
 }
 

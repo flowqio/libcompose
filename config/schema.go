@@ -191,6 +191,13 @@ var schemaDataV1 = `{
 }
 `
 
+//2018 flowqio hack add some properties v2.2,v2.3,v2.4
+//"cpu_percent": {"type": ["number", "string"]},
+//"cpu_period": {"type": ["number", "string"]},
+//"cpus": {"type": "number"},
+//"cpu_rt_runtime":{"type": ["number", "string"]},
+//"cpu_rt_period": {"type": ["number", "string"]},
+
 var servicesSchemaDataV2 = `{
   "$schema": "http://json-schema.org/draft-04/schema#",
   "id": "config_schema_v2.0.json",
@@ -241,7 +248,11 @@ var servicesSchemaDataV2 = `{
         "container_name": {"type": "string"},
         "cpu_shares": {"type": ["number", "string"]},
         "cpu_quota": {"type": ["number", "string"]},
-        "cpuset": {"type": "string"},
+        "cpu_percent": {"type": ["number", "string"]},
+        "cpu_period": {"type": ["number", "string"]},
+        "cpus": {"type": "number"},
+        "cpu_rt_runtime":{"type": ["number", "string"]},
+        "cpu_rt_period":{"type": ["number", "string"]},
         "depends_on": {"$ref": "#/definitions/list_of_strings"},
         "devices": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
         "dns": {"$ref": "#/definitions/string_or_list"},

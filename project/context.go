@@ -31,6 +31,30 @@ type Context struct {
 	LoggerFactory       logger.Factory
 	IgnoreMissingConfig bool
 	Project             *Project
+	//hack
+	TemplateParameter map[string]string
+}
+
+//hack
+func (c *Context) Transfer() {
+	if c.ComposeBytes == nil {
+		return
+	}
+	if len(c.TemplateParameter) == 0 {
+		return
+	}
+
+	for idx := range c.ComposeBytes {
+
+		rawContent := string(c.ComposeBytes[idx])
+
+		for k, v := range c.TemplateParameter {
+			rawContent = strings.Replace(rawContent, "{"+k+"}", v, -1)
+		}
+		c.ComposeBytes[idx] = []byte(rawContent)
+		fmt.Printf("RawContent:\n%s", rawContent)
+	}
+
 }
 
 func (c *Context) readComposeFiles() error {

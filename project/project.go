@@ -44,6 +44,14 @@ type Project struct {
 	upCount       int
 	listeners     []chan<- events.Event
 	hasListeners  bool
+	containerInfo []ContainerInfo
+}
+
+type ContainerInfo struct {
+	ID      string
+	Name    string
+	Ports   string
+	Command string
 }
 
 // NewProject creates a new project with the specified context.
@@ -96,6 +104,26 @@ func NewProject(context *Context, runtime RuntimeProject, parseOptions *config.P
 	p.listeners = []chan<- events.Event{NewDefaultListener(p)}
 
 	return p
+}
+
+func (p *Project) GetContainerInfo() []ContainerInfo {
+	return p.containerInfo
+}
+
+func (p *Project) AddContainerInfo(info ContainerInfo) {
+	if p.containerInfo == nil {
+		p.containerInfo = []ContainerInfo{info}
+		return
+	}
+
+	for idx := range p.containerInfo {
+		if p.containerInfo[idx].Name == info.Name {
+			p.containerInfo[idx].ID = info.ID
+			return
+		}
+	}
+
+	p.containerInfo = append(p.containerInfo, info)
 }
 
 // Parse populates project information based on its context. It sets up the name,

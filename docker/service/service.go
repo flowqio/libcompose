@@ -344,6 +344,12 @@ func (s *Service) up(ctx context.Context, imageName string, create bool, options
 			s.project.Notify(events.ContainerStarted, s.name, map[string]string{
 				"name": c.Name(),
 			})
+			info, err := c.Info(ctx)
+			if err != nil {
+				return err
+			}
+			s.project.AddContainerInfo(project.ContainerInfo{ID: c.ID(), Name: c.Name(), Ports: info["Ports"], Command: info["Command"]})
+			//s.projec.UpdateCotnainerID(c.Name(), c.ID())
 		}
 
 		return err

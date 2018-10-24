@@ -87,7 +87,8 @@ func (c *Context) readComposeFiles() error {
 		}
 		c.ComposeBytes = append(c.ComposeBytes, composeBytes)
 	}
-
+	//Stevensu Hack libcompose add Transfer()
+	c.Transfer()
 	return nil
 }
 

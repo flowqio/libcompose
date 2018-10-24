@@ -1,7 +1,8 @@
 # libcompose
 
 [![GoDoc](https://godoc.org/github.com/docker/libcompose?status.png)](https://godoc.org/github.com/docker/libcompose)
-[![Build Status](https://jenkins.dockerproject.org/job/docker/job/libcompose/branch/master/badge/icon)](https://jenkins.dockerproject.org/job/docker/job/libcompose/branch/master/)
+
+This is flowqio fork version , add some feature for flowqio.io , like template "{OID}" 
 
 A Go library for Docker Compose. It does everything the command-line tool does, but from within Go -- read Compose files, start them, scale them, etc.
 

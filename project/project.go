@@ -48,10 +48,11 @@ type Project struct {
 }
 
 type ContainerInfo struct {
-	ID      string
-	Name    string
-	Ports   string
-	Command string
+	ID       string
+	Name     string
+	Hostname string
+	Ports    string
+	Command  string
 }
 
 // NewProject creates a new project with the specified context.
